@@ -4,9 +4,10 @@ createSalary = (req, res) => {
     const body = req.body
 
     if (!body) {
+        console.log(req)
         return res.status(400).json({
             success: false,
-            error: `You must provide a salary. Request body is: ${body}`,
+            error: `You must provide a salary. Request body is: ${body}.`,
         })
     }
 
@@ -16,7 +17,7 @@ createSalary = (req, res) => {
         return res.status(400).json({ success: false, error: err })
     }
 
-    Salary
+    salary
         .save()
         .then(() => {
             return res.status(201).json({
