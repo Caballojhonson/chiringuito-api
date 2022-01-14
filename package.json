@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "startDev": "nodemon index.js",
-    "start": "node .bin/www"
+    "start": "node index.js"
   },
-  "engines": { "node": "16.13.1" },
+  "engines": { "node": "16.x" },
   "keywords": [],
   "author": "",
   "license": "ISC",
