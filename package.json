@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "startDev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node .bin/www"
   },
   "engines": { "node": "16.13.1" },
   "keywords": [],

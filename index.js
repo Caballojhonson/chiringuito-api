@@ -13,3 +13,5 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
 
 app.use('/api', salaryRouter)
+
+module.exports = app
