@@ -6,7 +6,7 @@ createSalary = (req, res) => {
     if (!body) {
         return res.status(400).json({
             success: false,
-            error: 'You must provide a salary',
+            error: `You must provide a salary. Request body is: ${body}`,
         })
     }
 
