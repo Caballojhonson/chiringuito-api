@@ -17,5 +17,5 @@ app.use(bodyParser.json())
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.listen(process.env.PORT || apiPort, () => console.log(`Server running on port ${apiPort}`))
 
-app.use('/api', salaryRouter)
+app.use('/api/salaries', salaryRouter)
 
