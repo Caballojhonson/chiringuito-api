@@ -1,7 +1,7 @@
 const Day = require('../models/Day-model.js')
 
 createDay = (req, res) => {
-    const body = res.body
+    const body = req.body
 
     if (!body) {
         console.log(req)
@@ -62,12 +62,13 @@ updateDay = async (req, res) => {
         if (err) {
             return res.status(404).json({
                 err,
-                message: 'Movie not found!',
+                message: 'Day not found!',
             })
         }
 
-        // going to try and NOT do this:
-        // day.isOpen = body.isOpen
+        day.isOpen = body.isOpen
+        day.closingCash = body.closingCash
+        day.totalBalance = body.totalBalance
 
         day
             .save()
@@ -87,8 +88,38 @@ updateDay = async (req, res) => {
     })
 }
 
+addOperation = (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Day
+    .updateOne({ _id: req.params.id }, { $push: { operations: body } }, (err, operation) => {
+        if (err){
+            return res.status(404).json({
+                error,
+                message: 'New operation failed to be pushed',
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            id: operation._id,
+            message: 'Pushed new operation!',
+        })
+
+    })
+
+}
+
 module.exports = {
     createDay,
     getDays,
     updateDay,
+    addOperation,
 }
