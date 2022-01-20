@@ -45,7 +45,9 @@ getSalaries = async (req, res) => {
                 .json({ success: false, error: `Salary not found` })
         }
         return res.status(200).json({ success: true, data: salaries })
-    }).catch(err => console.log(err))
+    })
+    .sort({ date: 1 })
+    .catch(err => console.log(err))
 }
 
 updateSalary = async (req, res) => {
