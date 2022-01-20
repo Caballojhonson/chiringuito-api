@@ -6,6 +6,7 @@ const db = require('./db')
 
 const salaryRouter = require('./routes/salary-router')
 const dayRouter = require('./routes/day-router')
+const itemRouter = require('./routes/item-router')
 
 const app = express()
 const apiPort = '5000';
@@ -21,4 +22,5 @@ app.listen(process.env.PORT || apiPort, () => console.log(`Server running on por
 
 app.use('/api/salaries', salaryRouter)
 app.use('/api/days', dayRouter)
+app.use('/api/items', itemRouter)
 
