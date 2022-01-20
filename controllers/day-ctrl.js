@@ -44,6 +44,7 @@ getDays = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `No days found` })
         }
+
         return res.status(200).json({ success: true, data: days })
     }).catch(err => console.log(err))
 }
@@ -69,6 +70,7 @@ updateDay = async (req, res) => {
         day.isOpen = body.isOpen
         day.closingCash = body.closingCash
         day.totalBalance = body.totalBalance
+        day.closingTime = body.closingTime
 
         day
             .save()
