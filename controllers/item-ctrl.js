@@ -47,7 +47,7 @@ getItems = async (req, res) => {
 
         return res.status(200).json({ success: true, data: items })
     })
-    .sort({"name":-1}) //TEST!!
+    .sort({"name":1}) //TEST!!
     .catch(err => console.log(err))
 }
 
