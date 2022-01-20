@@ -4,7 +4,7 @@ const Day = new mongoose.Schema({
     isOpen: Boolean,
     openingCash: Number,
     closingCash: {type: Number, default: 0},
-    closingTime: Date,
+    closingTime: {type: Date, default: new Date()},
     totalBalance: {type: Number, default: 0},
     usr: {type: String, default: 'Anon'},
     timestamp: Date,
