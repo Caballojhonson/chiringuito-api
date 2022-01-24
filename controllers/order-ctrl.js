@@ -37,5 +37,4 @@ createOrder = (req, res) => {
 
 module.exports = {
     createOrder,
-    getOrders,
 }
