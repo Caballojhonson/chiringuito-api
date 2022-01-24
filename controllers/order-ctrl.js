@@ -34,21 +34,6 @@ createOrder = (req, res) => {
         })
 }
 
-getOrders = async (req, res) => {
-    await Order.find({}, (err, orders) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!orders.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Order not found` })
-        }
-        return res.status(200).json({ success: true, data: orders })
-    })
-    .sort({ date: 1 })
-    .catch(err => console.log(err))
-}
 
 module.exports = {
     createOrder,

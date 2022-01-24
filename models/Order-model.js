@@ -1,19 +1,16 @@
 const mongoose = require('mongoose')
+    , Schema = mongoose.Schema
 
 const Order = new mongoose.Schema({
         submittedAt: Date,
         submittedBy: String,
+        supplier: String,
+        orderStatus: String,
+        paymentStatus: String,
         totalPrice: Number,
         isArchived: Boolean,
-        orders: [{
-            supplier: String,
-            totalPrice: Number,
-            orderStatus: String,
-            paymentStatus: String,
-            isArchived: Boolean,
-            items: [{
-                type: mongoose.Schema.ObjectId, ref: 'Item' 
-            }]
+        items: [{
+            type: Schema.Types.ObjectId, ref: 'Item' 
         }]
 })
 
