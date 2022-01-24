@@ -10,7 +10,7 @@ const Order = new mongoose.Schema({
         totalPrice: Number,
         isArchived: Boolean,
         items: [{
-            type: Schema.Types.ObjectId, ref: 'Item' 
+            type: Schema.Types.ObjectId, ref: 'items' 
         }]
 })
 

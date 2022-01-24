@@ -34,7 +34,26 @@ createOrder = (req, res) => {
         })
 }
 
+getOrders = async (req, res) => {
+    await Order.find({})
+    .populate("items")
+    .exec((err, orders) => {
+        if (err) {
+            console.log(err)
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!orders.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `No orders found` })
+        }
+
+        return res.status(200).json({ success: true, data: orders })
+    })
+}
+
 
 module.exports = {
     createOrder,
+    getOrders,
 }
