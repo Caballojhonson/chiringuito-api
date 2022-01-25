@@ -42,7 +42,7 @@ createOrder = (req, res) => {
 
 getOrders = async (req, res) => {
     await Order.find({})
-    .populate("items")
+    .populate('items.item')
     .exec((err, orders) => {
         if (err) {
             console.log(err)
