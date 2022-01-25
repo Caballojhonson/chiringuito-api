@@ -13,7 +13,7 @@ const Order = new mongoose.Schema({
         items: [{
             item: {type: Schema.Types.ObjectId, ref: 'items'},
             quantity: Number,
-            //totalPrice: Number
+            totalPrice: Number
         }]
 })
 
