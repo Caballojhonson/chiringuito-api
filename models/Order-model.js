@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Order = new mongoose.Schema({
         submittedAt: Date,
         submittedBy: String,
+        week: Date,
         supplier: String,
         orderStatus: String,
         paymentStatus: String,

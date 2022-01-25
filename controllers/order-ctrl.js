@@ -1,3 +1,4 @@
+const { startOfWeek } = require('date-fns')
 const Order = require('../models/Order-model.js')
 
 createOrder = (req, res) => {
@@ -16,6 +17,8 @@ createOrder = (req, res) => {
     if (!order) {
         return res.status(400).json({ success: false, error: err })
     }
+
+    order.week = startOfWeek(new Date(order.submittedAt), { weekStartsOn: 1 })
 
     order
         .save()
