@@ -11,8 +11,9 @@ const Order = new mongoose.Schema({
         totalPrice: Number,
         isArchived: Boolean,
         items: [{
-            type: Schema.Types.ObjectId, ref: 'items',
-            quantity: Number
+            item: {type: Schema.Types.ObjectId, ref: 'items'},
+            quantity: Number,
+            totalPrice: Number
         }]
 })
 

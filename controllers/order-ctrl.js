@@ -19,6 +19,9 @@ createOrder = (req, res) => {
     }
 
     order.week = startOfWeek(new Date(order.submittedAt), { weekStartsOn: 1 })
+    order.items.forEach(item => {
+        item.totalPrice = item.quantity * item.item.price
+    });
 
     order
         .save()
