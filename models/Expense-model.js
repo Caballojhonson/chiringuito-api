@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+, Schema = mongoose.Schema
 const Expense = new mongoose.Schema({
     amount: Number,
     fromOrder: {type: Schema.Types.ObjectId, ref: 'orders'},
