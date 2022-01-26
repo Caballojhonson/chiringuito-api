@@ -11,7 +11,4 @@ router.put('/additem/:id', orderCtrl.addItem)
 router.put('/removeitem/:id', orderCtrl.deleteItem)
 router.delete('/delete/:id', orderCtrl.deleteOrder)
 
-
-
-
 module.exports = router
