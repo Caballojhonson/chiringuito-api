@@ -56,8 +56,127 @@ getOrders = async (req, res) => {
     })
 }
 
+updateOrder = async (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Order.findOne({ _id: req.params.id }, (err, order) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Order not found!',
+            })
+        }
+
+        order.orderStatus = body.orderStatus
+        order.paymentStatus = body.paymentStatus
+        order.isArchived = body.isArchived
+        order.items = body.items
+
+        order
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: order._id,
+                    message: 'Order updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Order not updated!',
+                })
+            })
+    })
+}
+
+addItem = (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Order
+    .updateOne({ _id: req.params.id }, { $push: { items: body } }, (err, operation) => {
+        if (err){
+            return res.status(404).json({
+                error,
+                message: 'New item failed to be pushed',
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            id: operation._id,
+            message: 'Pushed new item!',
+        })
+
+    })
+
+}
+
+deleteItem = (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Order
+    .updateOne({ _id: req.params.id }, { $pull: { items: {_id: body}  } }, (err, operation) => {
+        if (err){
+            return res.status(404).json({
+                error,
+                message: 'Item deletion failed...',
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            id: operation._id,
+            message: 'Item deleted!',
+        })
+
+    })
+
+}
+
+deleteOrder = async (req, res) => {
+    await Order.findOneAndDelete({ _id: req.params.id }, (err, order) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!order) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Order not found` })
+        }
+
+        return res.status(200).json({ success: true, data: order })
+    }).catch(err => console.log(err))
+}
+
 
 module.exports = {
     createOrder,
     getOrders,
+    updateOrder,
+    addItem,
+    deleteItem,
+    deleteOrder
 }
