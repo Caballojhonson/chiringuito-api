@@ -74,10 +74,10 @@ updateOrder = async (req, res) => {
             })
         }
 
-        body.orderStatus && order.orderStatus = body.orderStatus
-        body.paymentStatus && order.paymentStatus = body.paymentStatus
-        body.isArchived && order.isArchived = body.isArchived
-        body.items && order.items = body.items
+        if (body.orderStatus) order.orderStatus = body.orderStatus;
+        if (body.paymentStatus) order.paymentStatus = body.paymentStatus;
+        if (body.isArchived) order.isArchived = body.isArchived;
+        if (body.items) order.items = body.items;
 
         order
             .save()
