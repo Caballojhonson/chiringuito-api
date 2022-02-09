@@ -43,9 +43,7 @@ getDebts = async (req, res) => {
             return res.status(400).json({ success: false, error: err })
         }
         if (!debts.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `No debts found` })
+            return res.status(200).json({ success: true, data: [] })
         }
 
         return res.status(200).json({ success: true, data: debts })
