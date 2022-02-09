@@ -36,7 +36,6 @@ createFixed = (req, res) => {
 
 getFixeds = async (req, res) => {
     await Fixed.find({})
-    .populate('fromOrder')
     .exec((err, fixeds) => {
         if (err) {
             console.log(err)
