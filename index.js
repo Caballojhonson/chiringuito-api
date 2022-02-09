@@ -9,6 +9,8 @@ const dayRouter = require('./routes/day-router')
 const itemRouter = require('./routes/item-router')
 const orderRouter = require('./routes/order-router')
 const expenseRouter = require('./routes/expense-router')
+const debtRouter = require('./routes/debt-router')
+
 
 const app = express()
 const apiPort = '5000';
@@ -27,4 +29,5 @@ app.use('/api/days', dayRouter)
 app.use('/api/items', itemRouter)
 app.use('/api/orders', orderRouter)
 app.use('/api/expenses', expenseRouter)
+app.use('/api/debts', debtRouter)
 
