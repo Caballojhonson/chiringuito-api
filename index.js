@@ -12,7 +12,6 @@ const expenseRouter = require('./routes/expense-router')
 const debtRouter = require('./routes/debt-router')
 const fixedRouter = require('./routes/fixed-router')
 
-
 const app = express()
 const apiPort = '5000';
 
