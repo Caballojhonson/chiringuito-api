@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const cronBackup = require('./cron-jobs/backup')
 
 const bodyParser = require('body-parser')
 const db = require('./db')
@@ -34,3 +35,4 @@ app.use('/api/debts', debtRouter)
 app.use('/api/fixed', fixedRouter)
 app.use('/api/meals', mealRouter)
 
+cronBackup()
