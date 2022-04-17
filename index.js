@@ -14,6 +14,7 @@ const expenseRouter = require('./routes/expense-router')
 const debtRouter = require('./routes/debt-router')
 const fixedRouter = require('./routes/fixed-router')
 const mealRouter = require('./routes/meal-router')
+const supplierRouter = require('./routes/supplier-router')
 
 const app = express()
 const apiPort = '5000';
@@ -35,5 +36,7 @@ app.use('/api/expenses', expenseRouter)
 app.use('/api/debts', debtRouter)
 app.use('/api/fixed', fixedRouter)
 app.use('/api/meals', mealRouter)
+app.use('/api/suppliers', supplierRouter)
 
 generateDebts()
+// cronBackup()

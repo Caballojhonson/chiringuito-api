@@ -5,9 +5,8 @@
 // 	cron.schedule('* * * * *', () => {
 //         console.log('loglog')
 // 		const backupProcess = spawn('mongodump', [
-// 			'--db=chiringuito',
-// 			'--archive=./',
-// 			'--gzip',
+// 			'--uri mongodb+srv://mern:JAUBBCvA4CMn1X82jQFS@mern-cluster.y22mw.mongodb.net/chiringuito',
+// 			'--forceTableScan',
 // 		]);
 
 // 		backupProcess.on('exit', (code, signal) => {
