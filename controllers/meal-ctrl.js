@@ -53,6 +53,25 @@ getMeals = async (req, res) => {
     })
 }
 
+getOne = async (req, res) => {
+    await Meal.find({_id: req.params.id})
+    .populate('ingredients')
+    .populate('quantities.ingredient')
+    .exec((err, meals) => {
+        if (err) {
+            console.log(err)
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!meals.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `No meals found` })
+        }
+
+        return res.status(200).json({ success: true, data: meals })
+    })
+}
+
 updateMeal = async (req, res) => {
     const body = req.body
 
@@ -111,5 +130,6 @@ module.exports = {
     createMeal,
     getMeals,
     updateMeal,
-    deleteMeal
+    deleteMeal,
+    getOne,
 }
